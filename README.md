@@ -1,13 +1,14 @@
 # Book Exchange Portal
 
 A simple Java-based Book Exchange Portal with MySQL/MariaDB backend.  
-This project allows users to view and manage books using a Java CLI (or GUI in the future) and connects securely to a database using environment variables.
+This project allows users to **login** and view/manage books using a Java CLI (GUI planned for future) and connects to a database using environment variables.
 
 ---
 
 ## Features
 
-- View books from the `books` table.
+- User login system (`login.java`).
+- View books from the `books` table (`jdbc.java`).
 - Connects to MariaDB/MySQL using JDBC.
 - Uses environment variables for database credentials (`.env`).
 
@@ -50,11 +51,29 @@ mysql -u root -p < db.sql
 
 ## Compile and Run
 
+### To view all books:
+
 ```powershell
 javac -cp ".;lib\mysql-connector-j-9.4.0.jar;lib\dotenv-java-3.2.0.jar;src" src\jdbc.java
 java -cp ".;lib\mysql-connector-j-9.4.0.jar;lib\dotenv-java-3.2.0.jar;src" jdbc
 ```
 
-> This will load the DB credentials from `.env` and print all books in the database.
+### To login as a user:
+
+```powershell
+javac -cp ".;lib\mysql-connector-j-9.4.0.jar;lib\dotenv-java-3.2.0.jar;src" src\login.java
+java -cp ".;lib\mysql-connector-j-9.4.0.jar;lib\dotenv-java-3.2.0.jar;src" Login
+```
+
+> The program will prompt for username and password and verify them against the `users` table.
 
 ---
+
+
+---
+
+## Notes
+
+- Keep your real `.env` file secret; do **not** commit it to GitHub.
+- Currently, passwords are stored in **plain text**. Password hashing can be added later.
+- The `db.sql` file contains sample data for testing users, books, and exchange requests.

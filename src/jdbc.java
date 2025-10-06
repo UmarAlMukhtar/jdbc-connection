@@ -6,8 +6,8 @@ public class jdbc {
         Dotenv dotenv = Dotenv.load();
 
         String DB_URL = dotenv.get("DB_URL");
-        String USER = dotenv.get("USER");
-        String PASS = dotenv.get("PASS");
+        String DB_USER = dotenv.get("DB_USER");
+        String DB_PASS = dotenv.get("DB_PASS");
         String QUERY = "SELECT * FROM books";
 
         try {
