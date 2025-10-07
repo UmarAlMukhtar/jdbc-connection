@@ -12,12 +12,12 @@ public class jdbc {
 
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
-            Connection conn = DriverManager.getConnection(DB_URL, USER, PASS);
+            Connection conn = DriverManager.getConnection(DB_URL, DB_USER, DB_PASS);
             Statement stmt = conn.createStatement();
             ResultSet rs = stmt.executeQuery(QUERY);
 
             while (rs.next()) {
-                System.out.println(rs.getInt("book_id") + " - " + rs.getString("title"));
+                System.out.println(rs.getInt("book_id") + " - " + rs.getString("title") + " by " + rs.getString("author"));
             }
 
             rs.close();
